@@ -614,7 +614,7 @@ function renderProducts(list) {
             <div class="product-body">
                 <span class="product-category-tag">${p.category}</span>
                 <p class="product-title">${p.name}</p>
-                <a href="${p.link}" target="_blank" class="checkout-link">
+                <a href="${p.link}" target="_blank" class="checkout-link" onclick="trackCheckout('${p.name.replace(/'/g, "\\'")}', '${p.category}', '${p.link}')">
                     Checkout
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M7 17l9.2-9.2M17 17V7H7"/>
@@ -644,6 +644,25 @@ function filterProducts() {
     }
     renderProducts(filtered);
 }
+
+// Track checkout clicks
+function trackCheckout(productName, category, link) {
+    gtag('event', 'checkout_click', {
+        event_category: category,
+        event_label: productName,
+        link_url: link
+    });
+}
+
+// Track category filter clicks
+const originalSetCategory = setCategory;
+setCategory = function(cat) {
+    gtag('event', 'category_filter', {
+        event_category: 'navigation',
+        event_label: cat
+    });
+    originalSetCategory(cat);
+};
 
 loadData();
 </script>
