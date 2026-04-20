@@ -1,0 +1,61 @@
+{
+  "profile": {
+    "name": "@tanyaappa",
+    "bio": "Rekomendasi produk favorit Appa, tinggal klik!",
+    "photo": "",
+    "instagram": "yogaarizona"
+  },
+
+  "categories": ["All", "Fashion", "Beauty", "Home & Living", "Gadget", "Food & Snack", "Kids"],
+
+  "products": [
+    {
+      "name": "Parfum Botol Spray 5ml Premium",
+      "image": "https://placehold.co/400x400/D7CCC8/5C3D2E?text=Produk+1",
+      "link": "https://shopee.co.id",
+      "category": "Beauty"
+    },
+    {
+      "name": "Topi Korean Style Wanita Anti UV",
+      "image": "https://placehold.co/400x400/C1D4B9/5F6B5E?text=Produk+2",
+      "link": "https://shopee.co.id",
+      "category": "Fashion"
+    },
+    {
+      "name": "Rak Organizer Dapur Minimalist",
+      "image": "https://placehold.co/400x400/EFEBE9/795548?text=Produk+3",
+      "link": "https://shopee.co.id",
+      "category": "Home & Living"
+    },
+    {
+      "name": "TWS Earbuds Bluetooth 5.3 Bass",
+      "image": "https://placehold.co/400x400/D9E8D2/5F6B5E?text=Produk+4",
+      "link": "https://shopee.co.id",
+      "category": "Gadget"
+    },
+    {
+      "name": "Serum Vitamin C Brightening 30ml",
+      "image": "https://placehold.co/400x400/D7CCC8/5C3D2E?text=Produk+5",
+      "link": "https://shopee.co.id",
+      "category": "Beauty"
+    },
+    {
+      "name": "Keripik Pisang Coklat Premium 250g",
+      "image": "https://placehold.co/400x400/EFEBE9/795548?text=Produk+6",
+      "link": "https://shopee.co.id",
+      "category": "Food & Snack"
+    },
+    {
+      "name": "Baju Anak Set Lucu Katun Import",
+      "image": "https://placehold.co/400x400/C1D4B9/5F6B5E?text=Produk+7",
+      "link": "https://shopee.co.id",
+      "category": "Kids"
+    },
+    {
+      "name": "Phone Holder Magnetic Car Mount",
+      "image": "https://placehold.co/400x400/D9E8D2/5F6B5E?text=Produk+8",
+      "link": "https://shopee.co.id",
+      "category": "Gadget"
+    }
+  ]
+}
