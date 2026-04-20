@@ -452,6 +452,152 @@
         }
         .footer-heart { color: var(--warm-terracotta); }
 
+        /* New Arrivals Section */
+        .new-section {
+            margin: 4px 0 20px;
+            animation: slideUp 0.7s ease 0.18s both;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .section-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-sparkle {
+            font-size: 18px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--earth-800);
+        }
+        .section-count {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--warm-terracotta);
+            background: rgba(176, 120, 86, 0.1);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+        }
+        .new-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 4px 0 16px;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+        .new-scroll::-webkit-scrollbar { display: none; }
+
+        .new-card {
+            flex-shrink: 0;
+            width: 150px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            scroll-snap-align: start;
+            position: relative;
+        }
+        .new-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover);
+        }
+        .new-card-badge {
+            position: absolute;
+            top: 8px; left: 8px;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .badge-baru {
+            background: var(--warm-terracotta);
+            color: white;
+        }
+        .badge-hot {
+            background: #E85D3A;
+            color: white;
+        }
+        .badge-bestseller {
+            background: var(--earth-900);
+            color: var(--warm-cream);
+        }
+        .new-card-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--earth-100), var(--warm-sand));
+        }
+        .new-card-body {
+            padding: 10px;
+        }
+        .new-card-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--earth-900);
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .new-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
+            padding: 7px;
+            border: none;
+            border-radius: var(--radius-md);
+            background: var(--earth-900);
+            color: var(--warm-cream);
+            font-family: 'Outfit', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .new-card-btn:hover {
+            background: var(--warm-terracotta);
+        }
+        .new-card-btn svg { width: 12px; height: 12px; }
+
+        /* Product tag badge in grid */
+        .product-tag-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -531,6 +677,18 @@
             </div>
         </div>
 
+        <!-- Baru Masuk Section -->
+        <div class="new-section" id="newSection" style="display:none;">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <span class="section-sparkle">✨</span>
+                    <h2 class="section-title">Baru Masuk Etalase Appa</h2>
+                </div>
+                <span class="section-count" id="newCount">0</span>
+            </div>
+            <div class="new-scroll" id="newScroll"></div>
+        </div>
+
         <div class="categories-scroll" id="categories"></div>
         <div class="product-grid" id="productGrid"></div>
 
@@ -588,6 +746,31 @@ function initSite() {
         `<button class="cat-chip${cat === 'All' ? ' active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
     ).join('');
     renderProducts(products);
+
+    // Render "Baru Masuk" section
+    const taggedProducts = products.filter(p => p.tag && p.tag.trim() !== '');
+    if (taggedProducts.length > 0) {
+        document.getElementById('newSection').style.display = 'block';
+        document.getElementById('newCount').textContent = taggedProducts.length + ' produk';
+        const scrollContainer = document.getElementById('newScroll');
+        scrollContainer.innerHTML = taggedProducts.map(p => {
+            const badgeClass = p.tag === 'Hot' ? 'badge-hot' : p.tag === 'Best Seller' ? 'badge-bestseller' : 'badge-baru';
+            return `
+            <div class="new-card">
+                <span class="new-card-badge ${badgeClass}">${p.tag}</span>
+                <img class="new-card-img" src="${p.image}" alt="${p.name}" loading="lazy">
+                <div class="new-card-body">
+                    <p class="new-card-name">${p.name}</p>
+                    <a href="${p.link}" target="_blank" class="new-card-btn" onclick="trackCheckout('${p.name.replace(/'/g, "\\'")}', '${p.category}', '${p.link}')">
+                        Checkout
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17l9.2-9.2M17 17V7H7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>`;
+        }).join('');
+    }
 }
 
 function renderProducts(list) {
@@ -602,7 +785,7 @@ function renderProducts(list) {
     }
     grid.innerHTML = list.map((p, i) => `
         <div class="product-card" style="animation-delay: ${0.05 * i}s">
-            <div class="product-rank">${i + 1}</div>
+            ${p.tag ? `<span class="product-tag-badge ${p.tag === 'Hot' ? 'badge-hot' : p.tag === 'Best Seller' ? 'badge-bestseller' : 'badge-baru'}">${p.tag}</span>` : `<div class="product-rank">${i + 1}</div>`}
             <button class="product-fav" onclick="this.querySelector('svg').style.fill=this.querySelector('svg').style.fill?'':'var(--warm-terracotta)'">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>

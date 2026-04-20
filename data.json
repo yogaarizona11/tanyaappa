@@ -2,7 +2,7 @@
   "profile": {
     "name": "@tanyaappa",
     "bio": "Rekomendasi produk favorit Appa, tinggal klik!",
-    "photo": "https://imgur.com/H8K7wUS.jpeg",
+    "photo": "https://i.imgur.com/H8K7wUS.jpeg",
     "instagram": "yogaarizona"
   },
 
@@ -10,40 +10,60 @@
 
   "products": [
     {
-      "name": "Dakota Blouse (White)",
-      "image": "https://imgur.com/W1Qwl0w.jpeg",
-      "link": "https://s.shopee.co.id/2qQmE22nKS",
-      "category": "Fashion"
+      "name": "Parfum Botol Spray 5ml Premium",
+      "image": "https://placehold.co/400x400/D7CCC8/5C3D2E?text=Parfum+5ml",
+      "link": "https://shopee.co.id",
+      "category": "Beauty",
+      "tag": "Baru"
     },
     {
-      "name": "Emerald Kebaya (Jaguar)",
-      "image": "https://imgur.com/lmFdDbx.jpeg",
-      "link": "https://s.shopee.co.id/qfhoRq9aR",
-      "category": "Fashion"
+      "name": "Topi Korean Style Wanita Anti UV",
+      "image": "https://placehold.co/400x400/C1D4B9/5F6B5E?text=Topi+Korean",
+      "link": "https://shopee.co.id",
+      "category": "Fashion",
+      "tag": "Baru"
     },
     {
-      "name": "Blazer Denim (Blue)",
-      "image": "https://imgur.com/2c2BSUb.jpeg",
-      "link": "https://s.shopee.co.id/7VCbnwprTv",
-      "category": "Fashion"
+      "name": "Rak Organizer Dapur Minimalist",
+      "image": "https://placehold.co/400x400/EFEBE9/795548?text=Rak+Dapur",
+      "link": "https://shopee.co.id",
+      "category": "Home & Living",
+      "tag": "Hot"
     },
     {
-      "name": "Leg Pants Denim (Blue)",
-      "image": "https://imgur.com/pRO7KPe.jpeg",
-      "link": "https://s.shopee.co.id/2qQmFnsJwh",
-      "category": "Fashion"
+      "name": "TWS Earbuds Bluetooth 5.3 Bass",
+      "image": "https://placehold.co/400x400/D9E8D2/5F6B5E?text=TWS+Earbuds",
+      "link": "https://shopee.co.id",
+      "category": "Gadget",
+      "tag": ""
     },
     {
-      "name": "Kebaya Encim (Hijau Pupus)",
-      "image": "https://imgur.com/4tPqKrj.jpeg",
-      "link": "https://s.shopee.co.id/5q4O5xUFZk",
-      "category": "Fashion"
+      "name": "Serum Vitamin C Brightening 30ml",
+      "image": "https://placehold.co/400x400/D7CCC8/5C3D2E?text=Serum+VitC",
+      "link": "https://shopee.co.id",
+      "category": "Beauty",
+      "tag": "Best Seller"
     },
     {
-      "name": "Kebaya Encim (Ungu)",
-      "image": "https://imgur.com/jCuFVhM.jpeg",
-      "link": "https://s.shopee.co.id/40cjuda1A1",
-      "category": "Fashion"
+      "name": "Keripik Pisang Coklat Premium 250g",
+      "image": "https://placehold.co/400x400/EFEBE9/795548?text=Keripik+Pisang",
+      "link": "https://shopee.co.id",
+      "category": "Food & Snack",
+      "tag": ""
+    },
+    {
+      "name": "Baju Anak Set Lucu Katun Import",
+      "image": "https://placehold.co/400x400/C1D4B9/5F6B5E?text=Baju+Anak",
+      "link": "https://shopee.co.id",
+      "category": "Kids",
+      "tag": ""
+    },
+    {
+      "name": "Phone Holder Magnetic Car Mount",
+      "image": "https://placehold.co/400x400/D9E8D2/5F6B5E?text=Phone+Holder",
+      "link": "https://shopee.co.id",
+      "category": "Gadget",
+      "tag": ""
     }
   ]
 }
