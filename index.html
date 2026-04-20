@@ -13,62 +13,86 @@
       gtag('js', new Date());
       gtag('config', 'G-RFR47J7VSX');
     </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brown-900: #3D2B1F;
-            --brown-800: #5C3D2E;
-            --brown-700: #795548;
-            --brown-600: #8D6E63;
-            --brown-500: #A1887F;
-            --brown-400: #BCAAA4;
-            --brown-300: #D7CCC8;
-            --brown-200: #EFEBE9;
-            --brown-100: #F5F0ED;
-            --brown-50: #FAF8F6;
-            --sage-700: #5F6B5E;
-            --sage-600: #7A8B72;
-            --sage-500: #8FA387;
-            --sage-400: #A8BCA0;
-            --sage-300: #C1D4B9;
-            --sage-200: #D9E8D2;
-            --sage-100: #ECF3E8;
-            --sage-50: #F5F9F3;
-            --accent: #8D6E63;
-            --accent-sage: #7A8B72;
-            --text-primary: #3D2B1F;
-            --text-secondary: #795548;
-            --text-muted: #A1887F;
-            --bg-main: #FAF8F6;
-            --bg-card: #FFFFFF;
-            --shadow-soft: 0 2px 16px rgba(61, 43, 31, 0.06);
-            --shadow-hover: 0 8px 32px rgba(61, 43, 31, 0.12);
-            --radius: 16px;
-            --radius-sm: 10px;
+            --earth-950: #1C1410;
+            --earth-900: #2C2118;
+            --earth-800: #44322A;
+            --earth-700: #5E463A;
+            --earth-600: #7A5D4E;
+            --earth-500: #9B7E6F;
+            --earth-400: #B89E90;
+            --earth-300: #D4BFB3;
+            --earth-200: #E8DAD1;
+            --earth-100: #F3ECE7;
+            --earth-50: #F9F6F3;
+            --warm-cream: #FDF8F4;
+            --warm-sand: #F5EDE4;
+            --warm-clay: #C4A882;
+            --warm-terracotta: #B07856;
+            --warm-cocoa: #6B4C3B;
+            --glass-bg: rgba(253, 248, 244, 0.65);
+            --glass-border: rgba(180, 158, 144, 0.3);
+            --glass-shadow: 0 8px 32px rgba(44, 33, 24, 0.08);
+            --glass-blur: blur(20px);
+            --card-shadow: 0 4px 24px rgba(44, 33, 24, 0.06);
+            --card-hover: 0 12px 40px rgba(44, 33, 24, 0.12);
+            --radius-xl: 24px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
             --radius-pill: 50px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg-main);
-            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            background: var(--warm-cream);
+            color: var(--earth-900);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
+        .bg-decoration {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background:
-                radial-gradient(ellipse at 20% 0%, var(--sage-100) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 100%, var(--brown-200) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        .bg-blob-1 {
+            width: 400px; height: 400px;
+            background: var(--earth-200);
+            top: -100px; right: -100px;
+            animation: blobFloat 12s ease-in-out infinite;
+        }
+        .bg-blob-2 {
+            width: 350px; height: 350px;
+            background: var(--warm-sand);
+            bottom: 10%; left: -80px;
+            animation: blobFloat 15s ease-in-out infinite reverse;
+        }
+        .bg-blob-3 {
+            width: 250px; height: 250px;
+            background: var(--earth-300);
+            top: 40%; right: -50px;
+            animation: blobFloat 10s ease-in-out infinite 3s;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
         }
 
         .container {
@@ -79,214 +103,286 @@
             z-index: 1;
         }
 
-        /* Loading */
-        .loading {
+        .profile-card {
+            margin-top: 32px;
+            padding: 32px 24px 28px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--glass-shadow);
             text-align: center;
-            padding: 100px 20px;
-            color: var(--text-muted);
-            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.7s ease;
         }
-        .loading-spinner {
-            width: 36px; height: 36px;
-            border: 3px solid var(--brown-200);
-            border-top-color: var(--sage-600);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(135deg, var(--earth-200) 0%, var(--warm-sand) 50%, var(--earth-100) 100%);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            z-index: 0;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Profile */
-        .profile-header {
-            text-align: center;
-            padding: 48px 0 32px;
-            animation: fadeInDown 0.8s ease;
-        }
-        .profile-photo-wrapper {
-            width: 110px; height: 110px;
-            margin: 0 auto 20px;
+        .profile-photo-ring {
+            width: 100px; height: 100px;
+            margin: 0 auto 16px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--sage-400), var(--brown-400));
-            padding: 4px;
-            animation: float 4s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--warm-terracotta), var(--warm-clay), var(--earth-400));
+            padding: 3px;
+            position: relative;
+            z-index: 1;
+            animation: float 5s ease-in-out infinite;
         }
         .profile-photo {
             width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            background: var(--brown-200);
+            background: var(--warm-cream);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 42px;
-            border: 3px solid var(--bg-main);
+            font-size: 38px;
+            border: 3px solid var(--warm-cream);
         }
-        img.profile-photo {
-            display: block;
-        }
+        img.profile-photo { display: block; }
+
         .profile-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--brown-900);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--earth-900);
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
         }
         .profile-bio {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--earth-600);
             line-height: 1.5;
-            max-width: 300px;
-            margin: 0 auto 16px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 16px;
         }
-        .social-links {
+
+        .stats-bar {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 24px;
+            padding: 14px 0;
+            margin: 0 -24px;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 1;
         }
-        .social-btn {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1.5px solid var(--brown-300);
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--earth-800);
+        }
+        .stat-label {
+            font-size: 11px;
+            color: var(--earth-500);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 2px;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .social-pill {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            background: var(--earth-900);
+            color: var(--warm-cream);
+            font-size: 12px;
+            font-weight: 500;
             text-decoration: none;
-            color: var(--brown-700);
+            transition: all 0.3s ease;
         }
-        .social-btn:hover {
-            background: var(--brown-900);
-            color: white;
-            border-color: var(--brown-900);
+        .social-pill:hover {
+            background: var(--warm-terracotta);
             transform: translateY(-2px);
         }
-        .social-btn svg { width: 20px; height: 20px; }
+        .social-pill svg { width: 14px; height: 14px; }
 
-        /* Search */
-        .search-wrapper {
-            margin: 0 0 20px;
-            animation: fadeInUp 0.6s ease 0.2s both;
+        .search-section {
+            margin: 20px 0 16px;
+            animation: slideUp 0.7s ease 0.15s both;
         }
-        .search-container { position: relative; }
-        .search-bar {
-            width: 100%;
-            padding: 14px 20px 14px 48px;
-            border: 1.5px solid var(--brown-300);
-            border-radius: var(--radius-pill);
-            background: var(--bg-card);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            color: var(--text-primary);
-            outline: none;
+        .search-glass {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .search-bar::placeholder { color: var(--text-muted); }
-        .search-bar:focus {
-            border-color: var(--sage-500);
-            box-shadow: 0 0 0 4px rgba(127, 139, 114, 0.1);
+        .search-glass:focus-within {
+            border-color: var(--warm-clay);
+            box-shadow: 0 0 0 4px rgba(196, 168, 130, 0.15);
         }
-        .search-icon {
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: none;
+            background: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            color: var(--earth-900);
+            outline: none;
+        }
+        .search-input::placeholder { color: var(--earth-400); }
+        .search-glass-icon {
             position: absolute;
             left: 18px; top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: var(--earth-400);
             width: 18px; height: 18px;
         }
 
-        /* Categories */
-        .categories {
+        .categories-scroll {
             display: flex;
             gap: 8px;
             overflow-x: auto;
-            padding: 0 0 16px;
+            padding: 0 0 14px;
             scrollbar-width: none;
-            animation: fadeInUp 0.6s ease 0.3s both;
+            animation: slideUp 0.7s ease 0.25s both;
         }
-        .categories::-webkit-scrollbar { display: none; }
-        .cat-btn {
+        .categories-scroll::-webkit-scrollbar { display: none; }
+        .cat-chip {
             flex-shrink: 0;
             padding: 10px 20px;
             border-radius: var(--radius-pill);
-            border: 1.5px solid var(--brown-300);
-            background: var(--bg-card);
-            font-family: 'DM Sans', sans-serif;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            font-family: 'Outfit', sans-serif;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-secondary);
+            color: var(--earth-600);
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
         }
-        .cat-btn:hover { border-color: var(--brown-500); }
-        .cat-btn.active {
-            background: var(--brown-800);
-            color: white;
-            border-color: var(--brown-800);
+        .cat-chip:hover { border-color: var(--earth-400); color: var(--earth-800); }
+        .cat-chip.active {
+            background: var(--earth-900);
+            color: var(--warm-cream);
+            border-color: var(--earth-900);
+            box-shadow: 0 4px 12px rgba(44, 33, 24, 0.2);
         }
 
-        /* Product Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 14px;
-            animation: fadeInUp 0.6s ease 0.4s both;
+            animation: slideUp 0.7s ease 0.35s both;
         }
+
         .product-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-soft);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             opacity: 0;
-            animation: fadeInUp 0.5s ease forwards;
+            animation: cardReveal 0.5s ease forwards;
         }
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+            box-shadow: var(--card-hover);
+            border-color: var(--earth-300);
         }
-        .product-badge {
+
+        .product-rank {
             position: absolute;
-            top: 10px; right: 10px;
-            width: 26px; height: 26px;
-            border-radius: 50%;
-            background: var(--sage-600);
-            color: white;
+            top: 10px; left: 10px;
+            width: 28px; height: 28px;
+            border-radius: 10px;
+            background: var(--earth-900);
+            color: var(--warm-cream);
             font-size: 11px;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
-        .product-img-wrapper {
+        .product-fav {
+            position: absolute;
+            top: 10px; right: 10px;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: rgba(253, 248, 244, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .product-fav:hover { background: rgba(253, 248, 244, 1); transform: scale(1.1); }
+        .product-fav svg { width: 14px; height: 14px; color: var(--earth-500); }
+
+        .product-img-container {
             width: 100%;
             aspect-ratio: 1;
             overflow: hidden;
-            background: var(--brown-100);
+            background: linear-gradient(135deg, var(--earth-100), var(--warm-sand));
         }
         .product-img {
             width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .product-card:hover .product-img { transform: scale(1.05); }
-        .product-info { padding: 12px; }
-        .product-name {
+        .product-card:hover .product-img { transform: scale(1.08); }
+
+        .product-body { padding: 14px; }
+        .product-category-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--warm-terracotta);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+        .product-title {
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--earth-900);
             line-height: 1.4;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .checkout-btn {
+        .checkout-link {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -294,97 +390,152 @@
             width: 100%;
             padding: 10px;
             border: none;
-            border-radius: var(--radius-sm);
-            background: linear-gradient(135deg, var(--sage-600), var(--sage-700));
-            color: white;
-            font-family: 'DM Sans', sans-serif;
+            border-radius: var(--radius-md);
+            background: var(--earth-900);
+            color: var(--warm-cream);
+            font-family: 'Outfit', sans-serif;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
         }
-        .checkout-btn:hover { opacity: 0.9; transform: scale(1.02); }
-        .checkout-btn svg { width: 14px; height: 14px; }
+        .checkout-link:hover {
+            background: var(--warm-terracotta);
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(176, 120, 86, 0.3);
+        }
+        .checkout-link svg { width: 14px; height: 14px; }
 
-        /* No Results */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 48px 20px;
-            color: var(--text-muted);
+            padding: 60px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
         }
         .no-results-emoji { font-size: 48px; margin-bottom: 12px; }
-        .no-results-text { font-size: 14px; }
+        .no-results-text { font-size: 14px; color: var(--earth-500); }
 
-        /* Footer */
+        .loading {
+            text-align: center;
+            padding: 120px 20px;
+            color: var(--earth-500);
+        }
+        .loading-dots { display: flex; justify-content: center; gap: 6px; margin-bottom: 16px; }
+        .loading-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--earth-300);
+            animation: dotPulse 1.2s ease-in-out infinite;
+        }
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
-            padding: 20px;
-            animation: fadeInUp 0.6s ease 0.5s both;
+            padding: 24px;
+            animation: slideUp 0.7s ease 0.5s both;
         }
         .footer-text {
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+            font-size: 11px;
+            color: var(--earth-400);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
-        .footer-heart { color: var(--sage-500); }
+        .footer-heart { color: var(--warm-terracotta); }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-5px); }
         }
+        @keyframes cardReveal {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .product-card:nth-child(1) { animation-delay: 0.05s; }
+        .product-card:nth-child(2) { animation-delay: 0.1s; }
+        .product-card:nth-child(3) { animation-delay: 0.15s; }
+        .product-card:nth-child(4) { animation-delay: 0.2s; }
+        .product-card:nth-child(5) { animation-delay: 0.25s; }
+        .product-card:nth-child(6) { animation-delay: 0.3s; }
+        .product-card:nth-child(7) { animation-delay: 0.35s; }
+        .product-card:nth-child(8) { animation-delay: 0.4s; }
 
         @media (max-width: 360px) {
             .product-grid { gap: 10px; }
-            .product-info { padding: 10px; }
+            .product-body { padding: 10px; }
+            .stats-bar { gap: 16px; }
         }
     </style>
 </head>
 <body>
 
+<div class="bg-decoration">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+</div>
+
 <div class="container">
-    <!-- Loading state -->
     <div class="loading" id="loadingState">
-        <div class="loading-spinner"></div>
-        <p>Memuat produk...</p>
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+        <p style="font-size:13px;">Memuat koleksi...</p>
     </div>
 
-    <!-- Main content (hidden until data loads) -->
     <div id="mainContent" style="display:none;">
-        <header class="profile-header">
-            <div class="profile-photo-wrapper">
+        <div class="profile-card">
+            <div class="profile-photo-ring">
                 <div class="profile-photo" id="profilePhoto">🛍️</div>
             </div>
             <h1 class="profile-name" id="profileName">@tanyaappa</h1>
             <p class="profile-bio" id="profileBio"></p>
-            <div class="social-links" id="socialLinks"></div>
-        </header>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value" id="statProducts">0</div>
+                    <div class="stat-label">Produk</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statCategories">0</div>
+                    <div class="stat-label">Kategori</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">⭐</div>
+                    <div class="stat-label">Curated</div>
+                </div>
+            </div>
+            <div class="social-row" id="socialLinks"></div>
+        </div>
 
-        <div class="search-wrapper">
-            <div class="search-container">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="search-section">
+            <div class="search-glass">
+                <svg class="search-glass-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 </svg>
-                <input type="text" class="search-bar" placeholder="Cari produk..." id="searchInput" oninput="filterProducts()">
+                <input type="text" class="search-input" placeholder="Cari produk favorit..." id="searchInput" oninput="filterProducts()">
             </div>
         </div>
 
-        <div class="categories" id="categories"></div>
+        <div class="categories-scroll" id="categories"></div>
         <div class="product-grid" id="productGrid"></div>
 
         <footer class="footer">
-            <p class="footer-text">made with <span class="footer-heart">♥</span> by tanyaappa</p>
+            <p class="footer-text">curated with <span class="footer-heart">♥</span> by tanyaappa</p>
         </footer>
     </div>
 </div>
@@ -393,7 +544,6 @@
 let siteData = null;
 let activeCategory = 'All';
 
-// Load data from data.json
 async function loadData() {
     try {
         const response = await fetch('./data.json');
@@ -401,22 +551,18 @@ async function loadData() {
         initSite();
     } catch (error) {
         document.getElementById('loadingState').innerHTML =
-            '<p style="color:#A1887F;">Gagal memuat data. Cek file data.json kamu ya!</p>';
+            '<p style="color:var(--earth-400);font-size:13px;">Gagal memuat data. Cek file data.json ya!</p>';
     }
 }
 
 function initSite() {
-    // Hide loading, show content
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
-
     const { profile, categories, products } = siteData;
-
-    // Profile
     document.getElementById('profileName').textContent = profile.name;
     document.getElementById('profileBio').textContent = profile.bio;
-
-    // Profile photo
+    document.getElementById('statProducts').textContent = products.length;
+    document.getElementById('statCategories').textContent = categories.length - 1;
     const photoContainer = document.getElementById('profilePhoto');
     if (profile.photo && profile.photo.trim() !== '') {
         const img = document.createElement('img');
@@ -425,27 +571,22 @@ function initSite() {
         img.className = 'profile-photo';
         photoContainer.parentElement.replaceChild(img, photoContainer);
     }
-
-    // Social links
     const socialContainer = document.getElementById('socialLinks');
     if (profile.instagram) {
         socialContainer.innerHTML = `
-            <a href="https://instagram.com/${profile.instagram}" target="_blank" class="social-btn" aria-label="Instagram">
+            <a href="https://instagram.com/${profile.instagram}" target="_blank" class="social-pill">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
+                @${profile.instagram}
             </a>`;
     }
-
-    // Categories
     const catContainer = document.getElementById('categories');
     catContainer.innerHTML = categories.map(cat =>
-        `<button class="cat-btn${cat === 'All' ? ' active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
+        `<button class="cat-chip${cat === 'All' ? ' active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
     ).join('');
-
-    // Products
     renderProducts(products);
 }
 
@@ -455,19 +596,25 @@ function renderProducts(list) {
         grid.innerHTML = `
             <div class="no-results">
                 <div class="no-results-emoji">🔍</div>
-                <p class="no-results-text">Produknya belum ada nih, coba kata kunci lain ya~</p>
+                <p class="no-results-text">Produknya belum ada nih, coba kata kunci lain~</p>
             </div>`;
         return;
     }
     grid.innerHTML = list.map((p, i) => `
         <div class="product-card" style="animation-delay: ${0.05 * i}s">
-            <div class="product-badge">${i + 1}</div>
-            <div class="product-img-wrapper">
+            <div class="product-rank">${i + 1}</div>
+            <button class="product-fav" onclick="this.querySelector('svg').style.fill=this.querySelector('svg').style.fill?'':'var(--warm-terracotta)'">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+            </button>
+            <div class="product-img-container">
                 <img class="product-img" src="${p.image}" alt="${p.name}" loading="lazy">
             </div>
-            <div class="product-info">
-                <p class="product-name">${p.name}</p>
-                <a href="${p.link}" target="_blank" class="checkout-btn">
+            <div class="product-body">
+                <span class="product-category-tag">${p.category}</span>
+                <p class="product-title">${p.name}</p>
+                <a href="${p.link}" target="_blank" class="checkout-link">
                     Checkout
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M7 17l9.2-9.2M17 17V7H7"/>
@@ -480,7 +627,7 @@ function renderProducts(list) {
 
 function setCategory(cat) {
     activeCategory = cat;
-    document.querySelectorAll('.cat-btn').forEach(btn => {
+    document.querySelectorAll('.cat-chip').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.trim() === cat);
     });
     filterProducts();
@@ -498,7 +645,6 @@ function filterProducts() {
     renderProducts(filtered);
 }
 
-// Start!
 loadData();
 </script>
 
